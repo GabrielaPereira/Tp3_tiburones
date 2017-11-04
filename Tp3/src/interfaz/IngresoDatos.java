@@ -4,7 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -13,16 +15,21 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import logica.Jugador;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
 
 public class IngresoDatos {
 
 	private JFrame frame;
-	private JTable table;
-
+	private JTable grid_jugadores;
+	private ArrayList<Jugador> lista_jugadores ;
+	DefaultTableModel modelo;
+	
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -49,19 +56,20 @@ public class IngresoDatos {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 545, 517);
+		frame.setBounds(100, 100, 735, 517);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		
+		lista_jugadores = new ArrayList<Jugador>();
+		
 		
 		JButton btn_jugadores = new JButton("Subir lista Jugadores");
 		btn_jugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-	 File file = new File("");
+				File file = new File("");
 				 
-	 
-	 
-//				 file = abrirarchivo();
+				 file = abrirarchivo();
 				if(file != null){
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
 				        .newInstance();
@@ -76,7 +84,7 @@ public class IngresoDatos {
 				try {
 					document =  documentBuilder.parse(file);
 				} catch (SAXException | IOException e) {
-					// TODO Auto-generated catch block
+
 					e.printStackTrace();
 				}
 				
@@ -87,36 +95,65 @@ public class IngresoDatos {
 			        Node node = nodeList.item(i);
 			        if (node.getNodeType() == Node.ELEMENT_NODE) {
 
-			        	String jugador, nivel, pos;
-			        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
-			        	nivel = ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
-			        	pos = ((org.w3c.dom.Document) document).getElementsByTagName("pos").item(i).getTextContent();
-			        
-//			        	
-//			        	nuevaConexion = new DatosLocalidad(prov,loc,hab,lat,lon);
-//			        	conexiones.add(nuevaConexion);
-////					Agrego a la grilla de conexiones
-//			        	modelo.addRow(new Object[]{ prov, loc, 
-//								habs, lats,lons
-//								});
-			        
-			        
+			        	String jugador, posicion, n;
+						Double nivel = null;
 			        	
+			        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
+			        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
+			        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
+			        	
+//						Agrego a la grilla de conexiones
+			        	modelo.addRow(new Object[]{ 
+			        			jugador, n, posicion, "", "", ""
+						});
+			        
+//			        	n = Integer.parseInt(nivel.toString());
+			        	Jugador j = new Jugador();
+			        	j.setNombre(jugador);
+			        	j.setNivel(nivel);
+			        	j.setPosicion(posicion);
+			        	lista_jugadores.add(j);
 			        }
 			        }
 			    }
 			    
 			}
+
+			private File abrirarchivo() {
+				
+				File file = null;
+				JFileChooser f =new JFileChooser();
+				int r = f.showOpenDialog(f);
+				if(r == JFileChooser.APPROVE_OPTION){
+				 File abre=f.getSelectedFile();
+				 file = new File(abre.toString());
+				}else{
+					
+				}
+				  
+				return file;
+				
+			}
 		});
-		btn_jugadores.setBounds(76, 33, 164, 30);
+		btn_jugadores.setBounds(124, 33, 164, 30);
 		frame.getContentPane().add(btn_jugadores);
 		
 		JButton btnSubirListaIncompativas = new JButton("Subir lista Incompatibles");
-		btnSubirListaIncompativas.setBounds(277, 33, 164, 30);
+		btnSubirListaIncompativas.setBounds(377, 33, 164, 30);
 		frame.getContentPane().add(btnSubirListaIncompativas);
 		
-		table = new JTable();
-		table.setBounds(40, 108, 459, 282);
-		frame.getContentPane().add(table);
+		grid_jugadores = new JTable();
+		grid_jugadores.setBounds(10, 108, 680, 282);
+		grid_jugadores.setModel(new DefaultTableModel(
+				new Object[][] {
+				},
+				new String[] {
+					"jugador", "nivel", "pos","i1", "i2", "i3" 
+				}
+			));
+		frame.getContentPane().add(grid_jugadores);
+		
+		modelo = (DefaultTableModel) grid_jugadores.getModel();   //modelo para la grilla
+
 	}
 }

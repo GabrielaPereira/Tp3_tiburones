@@ -1,21 +1,27 @@
 package logica;
 
+import java.util.ArrayList;
+
 public class Jugador {
 
 	String nombre;
-	int nivel;
+	Double nivel;
 	String posicion;
+	ArrayList<String> incompatibles;
 	
+	public Jugador(){
+		incompatibles = new ArrayList<String>();
+	}
 	public String getNombre() {
 		return nombre;
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	public int getNivel() {
+	public Double getNivel() {
 		return nivel;
 	}
-	public void setNivel(int nivel) {
+	public void setNivel(Double nivel ) {
 		this.nivel = nivel;
 	}
 	public String getPosicion() {
