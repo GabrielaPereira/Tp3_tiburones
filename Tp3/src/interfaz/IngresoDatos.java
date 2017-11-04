@@ -106,6 +106,7 @@ public class IngresoDatos {
 			        	modelo.addRow(new Object[]{ 
 			        			jugador, n, posicion, "", "", ""
 						});
+			        	
 			        
 //			        	n = Integer.parseInt(nivel.toString());
 			        	Jugador j = new Jugador();
