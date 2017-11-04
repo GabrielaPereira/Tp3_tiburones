@@ -97,6 +97,7 @@ public class IngresoDatos {
 			        	modelo.addRow(new Object[]{ prov, loc, 
 								habs, lats,lons
 								});
+			        
 			        }
 			        }
 			    }
