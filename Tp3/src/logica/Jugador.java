@@ -30,7 +30,12 @@ public class Jugador {
 	public void setPosicion(String posicion) {
 		this.posicion = posicion;
 	}
-	
+	public ArrayList<String> getIncompatibles(){
+		return incompatibles;
+	}
+	public void setIncompatibles(String i ){
+		incompatibles.add(i);
+	}
 	
 	
 	
