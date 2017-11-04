@@ -59,7 +59,8 @@ public class IngresoDatos {
 				
 	 File file = new File("");
 				 
-				 file = abrirarchivo();
+	 
+//				 file = abrirarchivo();
 				if(file != null){
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
 				        .newInstance();
@@ -90,15 +91,15 @@ public class IngresoDatos {
 			        	nivel = ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
 			        	pos = ((org.w3c.dom.Document) document).getElementsByTagName("pos").item(i).getTextContent();
 			        
-			        	
-			        	nuevaConexion = new DatosLocalidad(prov,loc,hab,lat,lon);
-			        	conexiones.add(nuevaConexion);
-//					Agrego a la grilla de conexiones
-			        	modelo.addRow(new Object[]{ prov, loc, 
-								habs, lats,lons
-								});
+//			        	
+//			        	nuevaConexion = new DatosLocalidad(prov,loc,hab,lat,lon);
+//			        	conexiones.add(nuevaConexion);
+////					Agrego a la grilla de conexiones
+//			        	modelo.addRow(new Object[]{ prov, loc, 
+//								habs, lats,lons
+//								});
 			        
-			        	fg
+			        
 			        	
 			        }
 			        }
