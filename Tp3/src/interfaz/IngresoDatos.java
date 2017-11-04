@@ -60,6 +60,7 @@ public class IngresoDatos {
 	 File file = new File("");
 				 
 	 
+	 
 //				 file = abrirarchivo();
 				if(file != null){
 				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
