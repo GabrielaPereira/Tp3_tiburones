@@ -97,27 +97,20 @@ public class IngresoDatos {
 			   
 		        	
 			        	for(int k=0;k<lista_jugadores.size();k++){
-			        		System.out.println("lista "+lista_jugadores.get(k).getNombre()+"hola");
-			        		System.out.println("jugador "+jugador+" ++++");
+//			        		System.out.println("lista "+lista_jugadores.get(k).getNombre()+"hola");
+//			        		System.out.println("jugador "+jugador+" ++++");
 			        		if(lista_jugadores.get(k).getNombre().equals(jugador)){
 			        			
 				        		lista_jugadores.get(k).setIncompatibles(i1);
 					        	lista_jugadores.get(k).setIncompatibles(i2);
 					        	lista_jugadores.get(k).setIncompatibles(i3);
-					        	String n = (String) grid_jugadores.getValueAt(k, 1);
-					        	String p = (String) grid_jugadores.getValueAt(k, 2);
 					        	grid_jugadores.setValueAt(i1, k, 3);
 					        	grid_jugadores.setValueAt(i2, k, 4);
 					        	grid_jugadores.setValueAt(i3, k, 5);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 3);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 4);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 5);
 					        	
 					        	RowsRenderer rr = new RowsRenderer(3);
 					        	grid_jugadores.setDefaultRenderer(Object.class, rr);
-					        	
-//					        	modelo.fireTableRowsUpdated(k, k);
-					        	
+					        					        	
 			        		}
 			        	}
 			        	
@@ -144,42 +137,51 @@ public class IngresoDatos {
 			    file = abrirarchivo();
 				if(file != null){
 				org.w3c.dom.Document document = buildDocument(file);
-				if(document != null ){
-				NodeList nodeList = document.getElementsByTagName("dato");
+				if(file.getName().contains("jugadores")){
+				   
+				if(document != null ){			
+										
+					NodeList nodeList = document.getElementsByTagName("dato");
+					
+				    for (int i = 0; i < nodeList.getLength(); i++) {
+				    				    				    	
+					        Node node = nodeList.item(i);
+					        if (node.getNodeType() == Node.ELEMENT_NODE) {
+		
+					        	String jugador, posicion, n;
+								Double nivel = null;
+					        	
+					        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
+					        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
+					        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
+					        	
+		//						Agrego a la grilla de conexiones
+					        	modelo.addRow(new Object[]{ 
+					        			jugador, n, posicion, "", "", ""
+								});
+					        	  			        			        	
+					   
+					        	Jugador j = new Jugador();
+					        	j.setNombre(jugador);
+					        	j.setNivel(nivel);
+					        	j.setPosicion(posicion);
+					        	lista_jugadores.add(j);
+					        }
+				        }
+				    
+					
+					
+				    }else{
+				    	JOptionPane.showMessageDialog(null,"Error de formato de archivo");
+				    }
+				}else{
+					JOptionPane.showMessageDialog(null,"Archivo Incorrecto");
+				}
 				
-			    for (int i = 0; i < nodeList.getLength(); i++) {
-			    				    				    	
-			        Node node = nodeList.item(i);
-			        if (node.getNodeType() == Node.ELEMENT_NODE) {
-
-			        	String jugador, posicion, n;
-						Double nivel = null;
-			        	
-			        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
-			        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
-			        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
-			        	
-//						Agrego a la grilla de conexiones
-			        	modelo.addRow(new Object[]{ 
-			        			jugador, n, posicion, "", "", ""
-						});
-			        	  
-			        			        	
-			   
-			        	Jugador j = new Jugador();
-			        	j.setNombre(jugador);
-			        	j.setNivel(nivel);
-			        	j.setPosicion(posicion);
-			        	lista_jugadores.add(j);
-			        }
-			        }
-			    }else{
-			    	JOptionPane.showMessageDialog(null,"Error al abrir el archivo");
-			    }
 				}
 			}
 
-		
+			
 		});
 		btn_jugadores.setBounds(137, 11, 177, 30);
 		frame.getContentPane().add(btn_jugadores);
