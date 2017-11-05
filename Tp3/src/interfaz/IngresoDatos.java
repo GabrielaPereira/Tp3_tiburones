@@ -159,8 +159,8 @@ public class IngresoDatos {
 					        	modelo.addRow(new Object[]{ 
 					        			jugador, n, posicion, "", "", ""
 								});
-					        	  			        			        	
-					   
+					        	  			        	
+						   
 					        	Jugador j = new Jugador();
 					        	j.setNombre(jugador);
 					        	j.setNivel(nivel);
