@@ -3,6 +3,7 @@ package interfaz;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
@@ -69,30 +70,14 @@ public class IngresoDatos {
 				
 				File file = new File("");
 				 
-				 file = abrirarchivo();
+			    file = abrirarchivo();
 				if(file != null){
-				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
-				        .newInstance();
-				DocumentBuilder documentBuilder = null;
-				try {
-					documentBuilder = documentBuilderFactory.newDocumentBuilder();
-				} catch (ParserConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				org.w3c.dom.Document document = null;
-				try {
-					document =  documentBuilder.parse(file);
-				} catch (SAXException | IOException e) {
-
-					e.printStackTrace();
-				}
-				
+				org.w3c.dom.Document document = buildDocument(file);
+				if(document != null){
 				NodeList nodeList = document.getElementsByTagName("dato");
 				
 			    for (int i = 0; i < nodeList.getLength(); i++) {
-			    	
-			    				    	
+			    				    				    	
 			        Node node = nodeList.item(i);
 			        if (node.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -107,9 +92,7 @@ public class IngresoDatos {
 			        	modelo.addRow(new Object[]{ 
 			        			jugador, n, posicion, "", "", ""
 						});
-			        	
-			        
-//			        	n = Integer.parseInt(nivel.toString());
+			   
 			        	Jugador j = new Jugador();
 			        	j.setNombre(jugador);
 			        	j.setNivel(nivel);
@@ -117,8 +100,44 @@ public class IngresoDatos {
 			        	lista_jugadores.add(j);
 			        }
 			        }
+			    }else{
+			    	JOptionPane.showMessageDialog(null,"Error al abrir el archivo");
 			    }
-			    
+				}
+			}
+
+			private org.w3c.dom.Document buildDocument(File file) {
+				DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
+				        .newInstance();
+				DocumentBuilder documentBuilder = null;
+				documentBuilder = newDocument(documentBuilderFactory, documentBuilder);
+				org.w3c.dom.Document document = null;
+				document = parseFile(file, documentBuilder, document);
+				return document;
+			}
+
+			private DocumentBuilder newDocument(DocumentBuilderFactory documentBuilderFactory,
+					DocumentBuilder documentBuilder) {
+				try {
+					documentBuilder = documentBuilderFactory.newDocumentBuilder();
+				} catch (ParserConfigurationException e) {
+					
+					e.printStackTrace();
+				}
+				return documentBuilder;
+			}
+
+			private org.w3c.dom.Document parseFile(File file, DocumentBuilder documentBuilder,
+					org.w3c.dom.Document document) {
+				try {
+					document =  documentBuilder.parse(file);
+				} catch (SAXException | IOException e) {
+//					e.printStackTrace();
+					JOptionPane.showMessageDialog(null,"Error formato");
+					document = null;
+				}
+				
+				return document;
 			}
 
 			private File abrirarchivo() {
@@ -130,18 +149,23 @@ public class IngresoDatos {
 				 File abre=f.getSelectedFile();
 				 file = new File(abre.toString());
 				}else{
-					
+					JOptionPane.showMessageDialog(null,"Se cancelo la subida");
 				}
 				  
 				return file;
 				
 			}
 		});
-		btn_jugadores.setBounds(124, 33, 164, 30);
+		btn_jugadores.setBounds(124, 33, 177, 30);
 		frame.getContentPane().add(btn_jugadores);
 		
 		JButton btnSubirListaIncompativas = new JButton("Subir lista Incompatibles");
-		btnSubirListaIncompativas.setBounds(377, 33, 164, 30);
+		btnSubirListaIncompativas.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
+		btnSubirListaIncompativas.setBounds(377, 33, 184, 30);
 		frame.getContentPane().add(btnSubirListaIncompativas);
 		
 		grid_jugadores = new JTable();
