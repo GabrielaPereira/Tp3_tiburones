@@ -168,9 +168,7 @@ public class IngresoDatos {
 					        	lista_jugadores.add(j);
 					        }
 				        }
-				    
-					
-					
+				    				
 				    }else{
 				    	JOptionPane.showMessageDialog(null,"Error de formato de archivo");
 				    }
