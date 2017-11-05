@@ -3,11 +3,13 @@
 <jugador> 
 Mario Bros
 </jugador>
-<nivel>
-10
-</nivel>
-<posicion>
-Delantero
-</posicion>
+<i1>
+Luigi
+</i1>
+<i2>
+Mushroom
+</i2>
+<i3>
 
+</i3>
 </dato>
