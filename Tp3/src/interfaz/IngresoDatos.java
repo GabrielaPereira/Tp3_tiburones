@@ -144,7 +144,7 @@ public class IngresoDatos {
 			    file = abrirarchivo();
 				if(file != null){
 				org.w3c.dom.Document document = buildDocument(file);
-				if(document != null){
+				if(document != null ){
 				NodeList nodeList = document.getElementsByTagName("dato");
 				
 			    for (int i = 0; i < nodeList.getLength(); i++) {
