@@ -2,7 +2,10 @@ package logica;
 
 import java.util.ArrayList;
 
-public class Solver {
+import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
+import javax.xml.ws.Action;
+public class Solver{
 	
 	InstanciaJugadores instancia;
 	private ArrayList <Jugador> jugadores;
@@ -10,11 +13,14 @@ public class Solver {
 	private Solucion  mejor;
 	private Solucion solucion;
 	
+	 
+	
+	
 	public Solver(InstanciaJugadores inst){
 		instancia = inst;
 		jugadores = inst.getObjetos();
 }
- public ArrayList getJugadores(){
+ public ArrayList<Jugador> getJugadores(){
 	 return jugadores;
  }
 	public Solucion resolver(){
@@ -25,10 +31,8 @@ public class Solver {
 		return mejor;
 	}
 	
-
-
-	   private void generarSolucionesDesde(int i) {
-			
+    private void generarSolucionesDesde(int i) {
+		
 		   if(i == instancia.cantidadDeJugadores()){
 				if(esFactible(solucion) && esMejor(solucion, mejor))
 					mejor = solucion.clonar();
@@ -40,6 +44,8 @@ public class Solver {
 				generarSolucionesDesde(i+1);
 			}		
 		}
+
+	   
    
    
    
@@ -66,7 +72,8 @@ public boolean esMejor(Solucion a , Solucion b){
 		return instancia.formacionMediocampistas();
 	}
 	
-
+	
+	
 	public static void main(String[] args) {
 		
 		InstanciaJugadores instancia = cargarInstancia();

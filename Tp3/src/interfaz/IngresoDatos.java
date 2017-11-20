@@ -8,16 +8,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
+import javax.swing.LookAndFeel;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.ws.Action;
 
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import Threads.ThreadBarra;
+import logica.InstanciaJugadores;
 import logica.Jugador;
+import logica.Solucion;
+import logica.Solver;
 
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -25,25 +33,42 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import java.awt.event.ActionEvent;
+import javax.swing.UIManager;
+
+import javax.swing.SwingUtilities;
+import javax.swing.SwingWorker;
+import javax.swing.JComboBox;
+import javax.swing.JTextArea;
+import java.awt.SystemColor;
+import javax.swing.JProgressBar;
+import javax.swing.event.ChangeListener;
+import javax.swing.event.ChangeEvent;
+import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Toolkit;
 
 
 
 
 public class IngresoDatos {
-
-	private JFrame frame;
+    private JComboBox<String> jcombobox;
+	private JFrame frmArgentinaRusia;
 	private JTable grid_jugadores;
-	private ArrayList<Jugador> lista_jugadores ;
+	private static  ArrayList<Jugador> lista_jugadores ;
 	private ArrayList<String> lista_incompatibles ;
+
 	DefaultTableModel modelo;
+	UIManager.LookAndFeelInfo[] lafinfo = UIManager.getInstalledLookAndFeels();
+	public static JProgressBar PbhayEquipo;
 	
+
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					IngresoDatos window = new IngresoDatos();
-					window.frame.setVisible(true);
+					window.frmArgentinaRusia.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -54,23 +79,41 @@ public class IngresoDatos {
 	/**
 	 * Create the application.
 	 */
+
 	public IngresoDatos() {
 		initialize();
+		
+		
+			try
+		{
+		 
+		UIManager.setLookAndFeel("UpperEssential.UpperEssentialLookAndFeel");
+	}
+		 catch(Exception e) { e.printStackTrace();}
+	
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
+	
+
+
+	
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 838, 582);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.getContentPane().setLayout(null);
+		frmArgentinaRusia = new JFrame();
+		frmArgentinaRusia.setIconImage(Toolkit.getDefaultToolkit().getImage(IngresoDatos.class.getResource("/imagenes/Copa Mundial Rusia 2018.png")));
+		frmArgentinaRusia.setFont(new Font("Book Antiqua", Font.PLAIN, 14));
+		frmArgentinaRusia.setTitle("                                                                   Argentina Rusia 2018");
+		frmArgentinaRusia.setBounds(100, 100, 838, 582);
+		frmArgentinaRusia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frmArgentinaRusia.getContentPane().setLayout(null);
 		
 		lista_jugadores = new ArrayList<Jugador>();
-		
+	
 		
 		JButton btnSubirListaIncompativas = new JButton("Subir lista Incompatibles");
+		btnSubirListaIncompativas.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/incompatible.png")));
 		btnSubirListaIncompativas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -97,20 +140,27 @@ public class IngresoDatos {
 			   
 		        	
 			        	for(int k=0;k<lista_jugadores.size();k++){
-//			        		System.out.println("lista "+lista_jugadores.get(k).getNombre()+"hola");
-//			        		System.out.println("jugador "+jugador+" ++++");
+			        		System.out.println("lista "+lista_jugadores.get(k).getNombre()+"hola");
+			        		System.out.println("jugador "+jugador+" ++++");
 			        		if(lista_jugadores.get(k).getNombre().equals(jugador)){
 			        			
 				        		lista_jugadores.get(k).setIncompatibles(i1);
 					        	lista_jugadores.get(k).setIncompatibles(i2);
 					        	lista_jugadores.get(k).setIncompatibles(i3);
+					        	String n = (String) grid_jugadores.getValueAt(k, 1);
+					        	String p = (String) grid_jugadores.getValueAt(k, 2);
 					        	grid_jugadores.setValueAt(i1, k, 3);
 					        	grid_jugadores.setValueAt(i2, k, 4);
 					        	grid_jugadores.setValueAt(i3, k, 5);
+//					        	grid_jugadores.setValueAt("Incompatible", 0, 3);
+//					        	grid_jugadores.setValueAt("Incompatible", 0, 4);
+//					        	grid_jugadores.setValueAt("Incompatible", 0, 5);
 					        	
 					        	RowsRenderer rr = new RowsRenderer(3);
 					        	grid_jugadores.setDefaultRenderer(Object.class, rr);
-					        					        	
+					        	
+//					        	modelo.fireTableRowsUpdated(k, k);
+					        	
 			        		}
 			        	}
 			        	
@@ -125,10 +175,11 @@ public class IngresoDatos {
 				
 			}
 		});
-		btnSubirListaIncompativas.setBounds(459, 11, 184, 30);
-		frame.getContentPane().add(btnSubirListaIncompativas);
+		btnSubirListaIncompativas.setBounds(599, 11, 184, 30);
+		frmArgentinaRusia.getContentPane().add(btnSubirListaIncompativas);
 		
 		JButton btn_jugadores = new JButton("Subir lista Jugadores");
+		btn_jugadores.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/argentina1r.png")));
 		btn_jugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -137,56 +188,53 @@ public class IngresoDatos {
 			    file = abrirarchivo();
 				if(file != null){
 				org.w3c.dom.Document document = buildDocument(file);
-				if(file.getName().contains("jugadores")){
-				   
-				if(document != null ){			
-										
-					NodeList nodeList = document.getElementsByTagName("dato");
-					
-				    for (int i = 0; i < nodeList.getLength(); i++) {
-				    				    				    	
-					        Node node = nodeList.item(i);
-					        if (node.getNodeType() == Node.ELEMENT_NODE) {
-		
-					        	String jugador, posicion, n;
-								Double nivel = null;
-					        	
-					        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
-					        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
-					        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
-					        	
-		//						Agrego a la grilla de conexiones
-					        	modelo.addRow(new Object[]{ 
-					        			jugador, n, posicion, "", "", ""
-								});
-					        	  			        	
-						   
-					        	Jugador j = new Jugador();
-					        	j.setNombre(jugador);
-					        	j.setNivel(nivel);
-					        	j.setPosicion(posicion);
-					        	lista_jugadores.add(j);
-					        }
-				        }
-				    				
-				    }else{
-				    	JOptionPane.showMessageDialog(null,"Error de formato de archivo");
-				    }
-				}else{
-					JOptionPane.showMessageDialog(null,"Archivo Incorrecto");
-				}
+				if(document != null ){
+				NodeList nodeList = document.getElementsByTagName("dato");
 				
+			    for (int i = 0; i < nodeList.getLength(); i++) {
+			    				    				    	
+			        Node node = nodeList.item(i);
+			        if (node.getNodeType() == Node.ELEMENT_NODE) {
+
+			        	String jugador, posicion, n;
+						Double nivel = null;
+			        	
+			        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
+			        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
+			        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
+			        	
+//						Agrego a la grilla de conexiones
+			        	modelo.addRow(new Object[]{ 
+			        			jugador, n, posicion, "", "", ""
+						});
+			        	  
+			        			        	
+			   
+			        	Jugador j = new Jugador();
+			        	j.setNombre(jugador);
+			        	j.setNivel(nivel);
+			        	j.setPosicion(posicion);
+			        	lista_jugadores.add(j);
+			        	
+			        }
+			        }
+			    }else{
+			    	JOptionPane.showMessageDialog(null,"Error al abrir el archivo");
+			    }
 				}
 			}
 
-			
+		
 		});
-		btn_jugadores.setBounds(137, 11, 177, 30);
-		frame.getContentPane().add(btn_jugadores);
+		
+		
+		
+		btn_jugadores.setBounds(412, 11, 177, 30);
+		frmArgentinaRusia.getContentPane().add(btn_jugadores);
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(53, 52, 714, 440);
-		frame.getContentPane().add(scrollPane);
+		frmArgentinaRusia.getContentPane().add(scrollPane);
 		
 		grid_jugadores = new JTable();
 		grid_jugadores.setEnabled(false);
@@ -208,13 +256,112 @@ public class IngresoDatos {
 
 		scrollPane.setViewportView(grid_jugadores);
 		
-		JButton btn_hayEquipo = new JButton("Hay equipo?!");
-		btn_hayEquipo.setBounds(540, 504, 227, 28);
-		frame.getContentPane().add(btn_hayEquipo);
+		ThreadBarra barra= new ThreadBarra();
 		
-
+		JButton btn_hayEquipo = new JButton("Hay equipo?!");
+		btn_hayEquipo.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/pelota.png")));
+		btn_hayEquipo.setToolTipText("Genera las soluciones para estos jugadores ");
+		btn_hayEquipo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			
+				
+				barra.start();
+			
+			}
+		});
+		
+		btn_hayEquipo.setBounds(589, 503, 177, 30);
+		frmArgentinaRusia.getContentPane().add(btn_hayEquipo);
+		
+		 jcombobox = new JComboBox<String>();
+		jcombobox.setBounds(97, 16, 197, 20);
+		frmArgentinaRusia.getContentPane().add(jcombobox);
+		
+		JButton btnNewButton = new JButton("Cambiar Tema");
+		btnNewButton.setToolTipText("Cambia el tema de la aplicacion");
+		btnNewButton.setBounds(293, 15, 109, 23);
+		frmArgentinaRusia.getContentPane().add(btnNewButton);
+		
+		JTextArea txtrTemas = new JTextArea();
+		txtrTemas.setBackground(SystemColor.menu);
+		txtrTemas.setEnabled(false);
+		txtrTemas.setEditable(false);
+		txtrTemas.setText("Temas ");
+		txtrTemas.setBounds(26, 14, 61, 22);
+		frmArgentinaRusia.getContentPane().add(txtrTemas);
+		
+		PbhayEquipo = new JProgressBar();
+		PbhayEquipo.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				
+				formandoEquipo();
+				
+			}
+		});
+		PbhayEquipo.setStringPainted(true);
+		PbhayEquipo.setBounds(176, 518, 242, 14);
+		frmArgentinaRusia.getContentPane().add(PbhayEquipo);
+		
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				try{
+				    String look = jcombobox.getSelectedItem().toString();
+				    UIManager.setLookAndFeel(look);
+				    SwingUtilities.updateComponentTreeUI(jcombobox);
+				    }catch(Exception e){
+				        e.printStackTrace();
+				    }
+				
+			}
+			});
+			
+		for (int i=0;i<lafinfo.length;i++){
+			jcombobox.addItem(lafinfo[i].getClassName());
+			jcombobox.addItem("UpperEssential.UpperEssentialLookAndFeel");
+			jcombobox.addItem("com.jtattoo.plaf.smart.SmartLookAndFeel");
+			jcombobox.addItem("com.jtattoo.plaf.mint.MintLookAndFeel");
+			jcombobox.addItem("com.jtattoo.plaf.luna.LunaLookAndFeel");
+			jcombobox.addItem("com.jtattoo.plaf.aero.AeroLookAndFeel");
+		   
+		    
+		}
+		
+		/*
+		JButton btn_empezar = new JButton("Empezar");
+		btn_empezar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Jugador jugador = new Jugador();
+				PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
+				pantallaInicio.setVisible(false);
+				pantallaPrincipal.setVisible(true);
+				jugador.setNombre(txt_nombre.getText());
+				pantallaPrincipal.setNombre(txt_nombre.getText());
+			}
+		});
+		btn_empezar.setBounds(260, 246, 119, 37);
+		pantallaInicio.getContentPane().add(btn_empezar);
+		
+*/
+	
 		
 	}
+	protected void formandoEquipo() {
+		
+		if( PbhayEquipo.getValue()==100)
+		{
+			InterfazSolucion pantallaEquipo = new InterfazSolucion();
+			
+			
+			pantallaEquipo.setVisible(true);
+			frmArgentinaRusia.setVisible(false);
+			
+			
+		}
+	}
+
+	public static  ArrayList<Jugador> getEquipo(){
+		return IngresoDatos.lista_jugadores; }
 	
 	private org.w3c.dom.Document buildDocument(File file) {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
@@ -250,6 +397,9 @@ public class IngresoDatos {
 		return document;
 	}
 
+	
+	
+	
 	private File abrirarchivo() {
 		
 		File file = null;
