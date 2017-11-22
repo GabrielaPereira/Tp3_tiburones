@@ -152,11 +152,18 @@ public class InterfazSolucion extends JFrame {
 		
 		
 		panel_n4 = new JPanel();
-		panel_n4.setBounds(58, 552, 475, 62);
+		panel_n4.setBounds(49, 552, 475, 96);
 		contentPane.add(panel_n4);
 		panel_n4.setVisible(true);
 		panel_n4.setOpaque(false);
 		panel_n4.setLayout(null);
+		
+		posarquero = new JLabel();
+		posarquero.setBounds(182, 11, 96, 74);
+		panel_n4.add(posarquero);
+		posarquero.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		posarquero.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png")));
+		posarquero.setText(arquero.getNombre());
 		
 		
 		
@@ -230,14 +237,6 @@ public class InterfazSolucion extends JFrame {
 		levell3_n4.setBounds(344, 8, 45, 45);
 		panel_n2.add(levell3_n4);	
 		levell3_n4.setColumns(10);
-		
-		posarquero = new JLabel();
-		posarquero.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		posarquero.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png")));
-		posarquero.setText(arquero.getNombre());	
-		//posarquero.setColumns(10);
-		posarquero.setBounds(154, -17, 163, 95);
-		panel_n4.add(posarquero);
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/CANCHA.png")));
