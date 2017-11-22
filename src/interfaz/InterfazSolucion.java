@@ -39,20 +39,20 @@ public class InterfazSolucion extends JFrame {
 	private JPanel contentPane;
 	
 	//private InstanciaEquipo j;
-	private JTextField defensor1;
-	private JTextField level2_n1;
-	private JTextField level2_n2;
-	private JTextField level2_n3;
-	private JTextField defensor2;
-	private JTextField level3_n1;
-	private JTextField level3_n2;
-	private JTextField level3_n3;
-	private JTextField levell3_n4;
+	private JLabel defensor1;
+	private JLabel level2_n1;
+	private JLabel level2_n2;
+	private JLabel level2_n3;
+	private JLabel defensor2;
+	private JLabel level3_n1;
+	private JLabel level3_n2;
+	private JLabel level3_n3;
+	private JLabel levell3_n4;
 	private JPanel panel_n4;
 	private JPanel panel_n1;
 	private JPanel panel_n2;
 	private JPanel panel_n3;
-	private JTextField defensor3;
+	private JLabel defensor3;
 	private JLabel posarquero;
 	private JLabel lblNewLabel;
 	private  ArrayList<Jugador> defensores;
@@ -159,7 +159,7 @@ public class InterfazSolucion extends JFrame {
 		panel_n4.setLayout(null);
 		
 		posarquero = new JLabel();
-		posarquero.setBounds(182, 11, 96, 74);
+		posarquero.setBounds(185, 30, 112, 55);
 		panel_n4.add(posarquero);
 		posarquero.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		posarquero.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png")));
@@ -167,44 +167,41 @@ public class InterfazSolucion extends JFrame {
 		
 		
 		
-		defensor1 = new JTextField();
+		defensor1 = new JLabel();
 		defensor1.setText(this.defensores.get(0).getNombre());
 		defensor1.setBounds(59, 11, 45, 45);
 		panel_n1.add(defensor1);   
-		defensor1.setColumns(10);
+		
 	
 		
-		defensor3 = new JTextField();
+		defensor3 = new JLabel();
 		defensor3.setText(this.defensores.get(2).getNombre());
 		defensor3.setBounds(211, 51, 45, 45);
 		panel_n1.add(defensor3);
-		defensor3.setColumns(10);
 	
 	
 		
-		defensor2 = new JTextField();
+		defensor2 = new JLabel();
 		defensor2.setText(this.defensores.get(1).getNombre());
 		defensor2.setBounds(350, 11, 45, 45);
 		panel_n1.add(defensor2);
-		defensor2.setColumns(10);
+		
 		
 	
-		level3_n2 = new JTextField();
+		level3_n2 = new JLabel();
 		level3_n2.setText(this.goleadores.get(2).getNombre());	
-		level3_n2.setColumns(10);
 		level3_n2.setBounds(215, 62, 45, 45);
 		panel_n3.add(level3_n2);
 		
 		
-		level3_n1 = new JTextField();
+		level3_n1 = new JLabel();
 		level3_n1.setText(this.goleadores.get(1).getNombre());		
 		level3_n1.setBounds(86, 15, 45, 45);
 		panel_n3.add(level3_n1);
-		level3_n1.setColumns(10);
+
 		
-		level3_n3 = new JTextField();
+		level3_n3 = new JLabel();
 		level3_n3.setText(this.goleadores.get(0).getNombre());		
-		level3_n3.setColumns(10);
 		level3_n3.setBounds(355, 15, 45, 45);
 		panel_n3.add(level3_n3);
 		
@@ -213,30 +210,28 @@ public class InterfazSolucion extends JFrame {
 		contentPane.add(botonEquipo);
 
 				
-		level2_n1 = new JTextField();
+		level2_n1 = new JLabel();
 		level2_n1.setText(this.mediocampistas.get(1).getNombre());
 		level2_n1.setBounds(68, 8, 45, 45);			
-		level2_n1.setColumns(4);
 		panel_n2.add(level2_n1);
 		
-		level2_n2 = new JTextField();
+		level2_n2 = new JLabel();
 		level2_n2.setText(this.mediocampistas.get(2).getNombre());
 		level2_n2.setBounds(116, 96, 45, 45);		
 		panel_n2.add(level2_n2);
-		level2_n2.setColumns(4);
+	
 
 		
-		level2_n3 = new JTextField();
+		level2_n3 = new JLabel();
 		level2_n3.setText(this.mediocampistas.get(0).getNombre());
 		level2_n3.setBounds(282, 96, 45, 45);	
 		panel_n2.add(level2_n3);
-		level2_n3.setColumns(4);
 		
-		levell3_n4 = new JTextField();
+		levell3_n4 = new JLabel();
 		levell3_n4.setText(this.mediocampistas.get(3).getNombre());
 		levell3_n4.setBounds(344, 8, 45, 45);
 		panel_n2.add(levell3_n4);	
-		levell3_n4.setColumns(10);
+	
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/CANCHA.png")));
