@@ -53,7 +53,7 @@ public class InterfazSolucion extends JFrame {
 	private JPanel panel_n2;
 	private JPanel panel_n3;
 	private JTextField defensor3;
-	private JTextField posarquero;
+	private JLabel posarquero;
 	private JLabel lblNewLabel;
 	private  ArrayList<Jugador> defensores;
 	private  ArrayList<Jugador> mediocampistas;
@@ -231,10 +231,12 @@ public class InterfazSolucion extends JFrame {
 		panel_n2.add(levell3_n4);	
 		levell3_n4.setColumns(10);
 		
-		posarquero = new JTextField();
+		posarquero = new JLabel();
+		posarquero.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		posarquero.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png")));
 		posarquero.setText(arquero.getNombre());	
-		posarquero.setColumns(10);
-		posarquero.setBounds(202, 11, 45, 45);
+		//posarquero.setColumns(10);
+		posarquero.setBounds(154, -17, 163, 95);
 		panel_n4.add(posarquero);
 		
 		lblNewLabel = new JLabel("");
