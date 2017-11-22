@@ -47,6 +47,10 @@ private ArrayList<Jugador> equipo;
 		return ret;
 	}
 
+	public ArrayList<Jugador> getEquipo() {
+		return equipo;
+	}
+
 	public ArrayList<Jugador> getObjetos(){
 		return equipo;
 	}

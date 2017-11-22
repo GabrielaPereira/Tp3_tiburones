@@ -17,7 +17,9 @@ public class ThreadBarra extends Thread{
 				Thread.sleep(30);
 				
 				
+				
 			} catch (InterruptedException e) {
+
 				e.printStackTrace();
 			}
 				// TODO: handle exception

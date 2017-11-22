@@ -47,9 +47,17 @@ public class Solver{
 
 	   
    
+    private double nivelEquipo(){
+		double nivel=0;
+		for(int i=0;i<solucion.getEquipo().size();i++){
+			nivel=nivel+solucion.getJugador(i).nivel;
+		}
+		return nivel;
+	}
    
-   
-  
+  public double getNivel(){
+	  return nivelEquipo();
+  }
    
 public boolean esMejor(Solucion a , Solucion b){
 	return a.beneficioSolucion() > b.beneficioSolucion();

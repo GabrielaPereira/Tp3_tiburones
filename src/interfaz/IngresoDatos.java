@@ -183,6 +183,7 @@ public class IngresoDatos {
 		btn_jugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
+				Toolkit.getDefaultToolkit().beep();
 				File file = new File("");
 				 
 			    file = abrirarchivo();
@@ -256,17 +257,17 @@ public class IngresoDatos {
 
 		scrollPane.setViewportView(grid_jugadores);
 		
-		ThreadBarra barra= new ThreadBarra();
+		
 		
 		JButton btn_hayEquipo = new JButton("Hay equipo?!");
 		btn_hayEquipo.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/pelota.png")));
 		btn_hayEquipo.setToolTipText("Genera las soluciones para estos jugadores ");
 		btn_hayEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-			
 				
+				ThreadBarra barra= new ThreadBarra();				
 				barra.start();
-			
+			    
 			}
 		});
 		
