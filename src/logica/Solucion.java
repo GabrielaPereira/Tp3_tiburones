@@ -1,9 +1,6 @@
 package logica;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
 
 
@@ -41,11 +38,12 @@ private ArrayList<Jugador> equipo;
 	return( a.incompatibles.contains(b.getNombre()) || b.incompatibles.contains(a.getNombre())) ? true: false;
 }
 	public double beneficioSolucion(){
-		double ret = 0;
+		double ret = 0.0;
 		for(Jugador j : equipo)
 			ret += j.getNivel();
 		return ret;
 	}
+	 
 
 	public ArrayList<Jugador> getEquipo() {
 		return equipo;

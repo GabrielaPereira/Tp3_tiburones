@@ -1,10 +1,6 @@
 package logica;
 
 import java.util.ArrayList;
-
-import javax.swing.JOptionPane;
-import javax.swing.SwingWorker;
-import javax.xml.ws.Action;
 public class Solver{
 	
 	InstanciaJugadores instancia;
@@ -12,13 +8,13 @@ public class Solver{
 
 	private Solucion  mejor;
 	private Solucion solucion;
-	
-	 
+    private Double nivel ;
 	
 	
 	public Solver(InstanciaJugadores inst){
 		instancia = inst;
 		jugadores = inst.getObjetos();
+	    nivel=0.0;
 }
  public ArrayList<Jugador> getJugadores(){
 	 return jugadores;
@@ -27,7 +23,7 @@ public class Solver{
 		mejor = new Solucion();
 		solucion = new Solucion();
 		generarSolucionesDesde(0);
-		System.out.println(mejor.beneficioSolucion());
+		
 		return mejor;
 	}
 	
@@ -45,20 +41,10 @@ public class Solver{
 			}		
 		}
 
-	   
    
-    private double nivelEquipo(){
-		double nivel=0;
-		for(int i=0;i<solucion.getEquipo().size();i++){
-			nivel=nivel+solucion.getJugador(i).nivel;
-		}
-		return nivel;
+public InstanciaJugadores getInstancia() {
+		return instancia;
 	}
-   
-  public double getNivel(){
-	  return nivelEquipo();
-  }
-   
 public boolean esMejor(Solucion a , Solucion b){
 	return a.beneficioSolucion() > b.beneficioSolucion();
   }
@@ -87,7 +73,8 @@ public boolean esMejor(Solucion a , Solucion b){
 		InstanciaJugadores instancia = cargarInstancia();
 		
 		Solver solver = new Solver(instancia);
-		System.out.println(solver.resolver());
+
+		
 
 	}
 
@@ -137,6 +124,7 @@ public boolean esMejor(Solucion a , Solucion b){
 		    return instancia;
 		
 	}
+	
 		
 	
 	

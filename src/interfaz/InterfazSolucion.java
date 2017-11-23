@@ -1,35 +1,18 @@
 package interfaz;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-import java.util.OptionalDouble;
-import java.util.function.Consumer;
-
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.LookAndFeel;
-import javax.swing.SwingConstants;
-import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
-
-
 import logica.InstanciaJugadores;
 import logica.Jugador;
 import logica.Solver;
 
-import java.awt.Toolkit;
 public class InterfazSolucion extends JFrame {
 
 	/**
@@ -103,11 +86,11 @@ public class InterfazSolucion extends JFrame {
 		instancia.agregarJugador(IngresoDatos.getEquipo().get(i));
 		
 		}
-		solver = new Solver(instancia);
-		
+		solver = new Solver(instancia);		
 		solver.resolver();
 		equipo=solver.getJugadores();
-		System.out.println(equipo);
+
+		
 		
 		
 		defensores= new ArrayList<Jugador>();
@@ -131,21 +114,21 @@ public class InterfazSolucion extends JFrame {
 	
 		
 		 panel_n1 = new JPanel();
-		panel_n1.setBounds(49, 415, 475, 107);
+		panel_n1.setBounds(49, 404, 475, 145);
 		contentPane.add(panel_n1);
 		panel_n1.setOpaque(false);
 		panel_n1.setLayout(null);
 		panel_n1.setVisible(true);
 		
 		 panel_n2 = new JPanel();
-		panel_n2.setBounds(49, 204, 475, 188);
+		panel_n2.setBounds(49, 203, 475, 188);
 		contentPane.add(panel_n2);
 		panel_n2.setOpaque(false);
 		panel_n2.setVisible(true);
 		panel_n2.setLayout(null);
 	
 		 panel_n3 = new JPanel();
-		panel_n3.setBounds(49, 49, 475, 118);
+		panel_n3.setBounds(49, 24, 475, 143);
 		contentPane.add(panel_n3);
 		panel_n3.setOpaque(false);
 		panel_n3.setVisible(true);
@@ -153,91 +136,91 @@ public class InterfazSolucion extends JFrame {
 		
 		
 		panel_n4 = new JPanel();
-		panel_n4.setBounds(49, 552, 475, 96);
+		panel_n4.setBounds(49, 560, 475, 88);
 		contentPane.add(panel_n4);
 		panel_n4.setVisible(true);
 		panel_n4.setOpaque(false);
 		panel_n4.setLayout(null);
 		
 		posarquero = new JLabel();
-		posarquero.setBounds(185, 30, 112, 55);
+		posarquero.setBounds(192, 11, 140, 74);
 		panel_n4.add(posarquero);
 		posarquero.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		//posarquero.setIcon(i;
-		posarquero.setIcon(setFoto());
+		posarquero.setIcon(setFoto(arquero.getNombre()));
 		posarquero.setText(arquero.getNombre());
 		
 		
 		
 		defensor1 = new JLabel();
 		defensor1.setText(this.defensores.get(0).getNombre());
-		defensor1.setBounds(59, 11, 45, 45);
+		defensor1.setBounds(41, 24, 116, 73);
 		panel_n1.add(defensor1);   
-		defensor1.setIcon(setFoto());
-		
+		defensor1.setIcon(setFoto(this.defensores.get(0).getNombre()));
 	
 		
 		defensor3 = new JLabel();
 		defensor3.setText(this.defensores.get(2).getNombre());
-		defensor3.setBounds(211, 51, 45, 45);
+		defensor3.setBounds(201, 72, 138, 73);
 		panel_n1.add(defensor3);
-		defensor3.setIcon(setFoto());
-	
+		defensor3.setIcon(setFoto(this.defensores.get(2).getNombre()));
+		
 		
 		defensor2 = new JLabel();
 		defensor2.setText(this.defensores.get(1).getNombre());
-		defensor2.setBounds(350, 11, 45, 45);
+		defensor2.setBounds(316, 21, 159, 78);
 		panel_n1.add(defensor2);
-		defensor2.setIcon(setFoto());
+		defensor2.setIcon(setFoto(this.defensores.get(1).getNombre()));
 		
 	
 		level3_n2 = new JLabel();
 		level3_n2.setText(this.goleadores.get(2).getNombre());	
-		level3_n2.setBounds(215, 62, 45, 45);
+		level3_n2.setBounds(213, 62, 132, 81);
 		panel_n3.add(level3_n2);
-		level3_n2.setIcon(setFoto());
+		level3_n2.setIcon(setFoto(this.goleadores.get(2).getNombre()));
 		
 		level3_n1 = new JLabel();
 		level3_n1.setText(this.goleadores.get(1).getNombre());		
-		level3_n1.setBounds(86, 15, 45, 45);
+		level3_n1.setBounds(86, 15, 147, 72);
 		panel_n3.add(level3_n1);
-		level3_n1.setIcon(setFoto());
+		level3_n1.setIcon(setFoto(this.goleadores.get(1).getNombre()));
+		
 		
 		level3_n3 = new JLabel();
 		level3_n3.setText(this.goleadores.get(0).getNombre());		
-		level3_n3.setBounds(355, 15, 45, 45);
+		level3_n3.setBounds(355, 15, 110, 72);
 		panel_n3.add(level3_n3);
-		level3_n3.setIcon(setFoto());
+		level3_n3.setIcon(setFoto(this.goleadores.get(0).getNombre()));
 		
-		JLabel botonEquipo = new JLabel("  Nivel del equipo :  "+ solver.getNivel() );
+		
+		JLabel botonEquipo = new JLabel("  Nivel del equipo :  "+ "hacer ");
 		botonEquipo.setBounds(80, 671, 189, 29);
 		contentPane.add(botonEquipo);
 
 				
 		level2_n1 = new JLabel();
 		level2_n1.setText(this.mediocampistas.get(1).getNombre());
-		level2_n1.setBounds(68, 8, 45, 45);			
+		level2_n1.setBounds(33, 23, 140, 61);			
 		panel_n2.add(level2_n1);
-		level2_n1.setIcon(setFoto());
+		level2_n1.setIcon(setFoto(this.mediocampistas.get(1).getNombre()));
 		
 		level2_n2 = new JLabel();
 		level2_n2.setText(this.mediocampistas.get(2).getNombre());
-		level2_n2.setBounds(116, 96, 45, 45);		
+		level2_n2.setBounds(119, 106, 131, 61);		
 		panel_n2.add(level2_n2);
-		level2_n2.setIcon(setFoto());
+		level2_n2.setIcon(setFoto(this.mediocampistas.get(2).getNombre()));
 
 		
 		level2_n3 = new JLabel();
 		level2_n3.setText(this.mediocampistas.get(0).getNombre());
-		level2_n3.setBounds(282, 96, 45, 45);	
+		level2_n3.setBounds(284, 96, 140, 81);	
 		panel_n2.add(level2_n3);
-		level2_n3.setIcon(setFoto());
+		level2_n3.setIcon(setFoto(this.mediocampistas.get(0).getNombre()));
 		
 		levell3_n4 = new JLabel();
 		levell3_n4.setText(this.mediocampistas.get(3).getNombre());
-		levell3_n4.setBounds(344, 8, 45, 45);
+		levell3_n4.setBounds(354, 15, 121, 77);
 		panel_n2.add(levell3_n4);	
-		levell3_n4.setIcon(setFoto());
+		levell3_n4.setIcon(setFoto(this.mediocampistas.get(3).getNombre()));
 		
 		lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(InterfazSolucion.class.getResource("/imagenes/CANCHA.png")));
@@ -247,39 +230,61 @@ public class InterfazSolucion extends JFrame {
 	
 	}
 
-	private Icon setFoto() {
+	private Icon setFoto(String nombre) {
 		ImageIcon imagen = null;
-		for (int i=0;i<equipo.size();i ++){
-			String nombre=equipo.get(i).getNombre();
 	
 		switch(nombre){
-		case("Mascherano"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Mascherano.png"));
-		case("Marchesin"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Marchesin.png"));
-		case("Dybala"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Dybala.png"));
-		case("Di Maria"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Di Maria.png"));
-		case("Otamendi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Otamendi.png"));
-		case("Funes Mori"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Funes Mori.png"));
-		case("Mercado"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Mercado.png"));
-		case("Pazzela"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Pazzela.png"));
-		case("Fazio"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Fazio.png"));
-		case("Romero"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png"));
-		case("Guzman"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Guzman.png"));
-		case("Acuña"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Acuña.png"));
-		case("Biglia"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Biglia.png"));
-		case("Rigone"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Rigone.png"));
-		case("Paredes"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Paredes.png"));
-		case("Kranevitter"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Kranevitter.png"));
-		case("Banega"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Banega.png"));
-		case("Papu Gomez"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Papu Gomez.png"));
-		case("Salvio"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Salvio.png"));
-		case("Diego peroti"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Diego peroti.png"));
-		case("Messi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Messi.png"));
-		case("Agüero"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Agüero.png"));
-		case("Icardi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Icardi.png"));
 		
+		case("Mascherano"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Mascherano.png"));
+		break;
+		case("Marchesin"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Marchesin.png"));
+		break;
+		case("Dybala"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Dybala.png"));
+		break;
+		case("Di Maria"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Di Maria.png"));
+		break;
+		case("Otamendi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Otamendi.png"));
+		break;
+		case("Funes Mori"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Funes Mori.png"));
+		break;	
+		case("Mercado"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Mercado.png"));
+		break;
+		case("Pazzela"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Pazzela.png"));
+		break;
+		case("Fazio"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Fazio.png"));
+		break;
+		case("Romero"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Romero.png"));
+		break;
+		case("Guzman"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Guzman.png"));
+		break;
+		case("Acuña"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Acuña.png"));
+		break;
+		case("Biglia"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Biglia.png"));
+		break;
+		case("Rigone"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Rigone.png"));
+		break;
+		case("Paredes"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Paredes.png"));
+		break;
+		case("Kranevitter"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Kranevitter.png"));
+		break;
+		case("Banega"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Banega.png"));
+		break;
+		case("Papu Gomez"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Papu Gomez.png"));
+		break;
+		case("Salvio"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Salvio.png"));
+		break;
+		case("Diego peroti"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Diego peroti.png"));
+		break;
+		case("Messi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Messi.png"));
+		break;
+		case("Agüero"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Agüero.png"));
+		break;
+		case("Icardi"):imagen = new ImageIcon(InterfazSolucion.class.getResource("/imagenes/Icardi.png"));
+		break;
+		default: break;
 		
 		}
-	}
+	
 		return imagen;
 	
 	}

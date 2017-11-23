@@ -76,7 +76,8 @@ public class InstanciaJugadores {
 	public Jugador getJugador(int j){
 		return jugadores.get(j);
 	}
-
+	
+	  
 
 	@SuppressWarnings("unchecked")
 	public ArrayList<Jugador> getObjetos(){

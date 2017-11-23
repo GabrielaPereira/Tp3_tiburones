@@ -8,35 +8,24 @@ import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JTable;
-import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.table.DefaultTableModel;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.ws.Action;
-
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import Threads.ThreadBarra;
-import logica.InstanciaJugadores;
 import logica.Jugador;
-import logica.Solucion;
-import logica.Solver;
-
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import java.awt.event.ActionEvent;
-import javax.swing.UIManager;
-
 import javax.swing.SwingUtilities;
-import javax.swing.SwingWorker;
 import javax.swing.JComboBox;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
