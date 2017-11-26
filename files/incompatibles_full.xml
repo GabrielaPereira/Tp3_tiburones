@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <incompatibles>
-<dato id="1">	<jugador>Otamendi </jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
+<dato id="1">	<jugador>Otamendi</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="2">	<jugador>Funes Mori</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="3">	<jugador>Mercado</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="4">	<jugador>Pazzela</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
@@ -8,11 +8,11 @@
 <dato id="6">	<jugador>Fazio</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="7">	<jugador>Romero</jugador>	<i1>Guzman</i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="8">	<jugador>Guzman</jugador>	<i1>Romero</i1>	<i2></i2>	<i3></i3>	</dato>
-<dato id="9">	<jugador>Marchesin	</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
+<dato id="9">	<jugador>Marchesin</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="10">	<jugador>Acuña</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="11">	<jugador>Biglia</jugador>	<i1>Di Maria</i1>	<i2></i2>	<i3></i3>	</dato>
-<dato id="12">	<jugador>Rigone	</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
-<dato id="13">	<jugador>	Paredes	</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
+<dato id="12">	<jugador>Rigone</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
+<dato id="13">	<jugador>Paredes</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="14">	<jugador>Kranevitter</jugador>	<i1>Papu Gomez</i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="15">	<jugador>Banega</jugador>	<i1></i1>	<i2></i2>	<i3></i3>	</dato>
 <dato id="16">	<jugador>Papu Gomez</jugador>	<i1>Kranevitter</i1>	<i2></i2>	<i3></i3>	</dato>
