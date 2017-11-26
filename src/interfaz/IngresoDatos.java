@@ -93,7 +93,7 @@ public class IngresoDatos {
 		lista_jugadores = new ArrayList<Jugador>();
 			
 		JButton btnSubirListaIncompativas = new JButton("Incompatibles");
-		btnSubirListaIncompativas.setIcon(new ImageIcon("C:\\Users\\IBM_ADMIN\\git4\\Tp3_tiburones\\src\\imagenes\\incompatibles_ico.png"));
+		btnSubirListaIncompativas.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/incompatibles_ico.png")));
 		btnSubirListaIncompativas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -147,7 +147,7 @@ public class IngresoDatos {
 		frmArgentinaRusia.getContentPane().add(btnSubirListaIncompativas);
 		
 		JButton btn_jugadores = new JButton("Jugadores");
-		btn_jugadores.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/argentina1r.png")));
+		btn_jugadores.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/jugador.png")));
 		btn_jugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
@@ -226,7 +226,7 @@ public class IngresoDatos {
 		scrollPane.setViewportView(grid_jugadores);
 		
 		JButton btn_hayEquipo = new JButton("Hay equipo?!");
-		btn_hayEquipo.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/pelota.png")));
+		btn_hayEquipo.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/cup.png")));
 		btn_hayEquipo.setToolTipText("Genera las soluciones para estos jugadores ");
 		btn_hayEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
