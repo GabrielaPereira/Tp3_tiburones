@@ -72,7 +72,7 @@ public class InterfazSolucion extends JFrame {
 		initialize(lista_jugadores);
 		}
 	
-	private void initialize(ArrayList<Jugador> lista_jugadores){
+	private void initialize(ArrayList<Jugador> equipo){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 750);
 		contentPane = new JPanel();
@@ -80,24 +80,23 @@ public class InterfazSolucion extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);	
 		//j = new InstanciaEquipo(3, 4, 3); //Creo la instancia nueva el nuevo equipo
-		js = new ArrayList<Jugador>();
-		js = lista_jugadores;
-		instancia= new InstanciaJugadores(3, 4, 3);
+
+//		instancia= new InstanciaJugadores(3, 4, 3);
 		
 //		for (int i=0;i<IngresoDatos.getEquipo().size();i++)
 //		{
 //		instancia.agregarJugador(IngresoDatos.getEquipo().get(i));
 //		}
 		
-		for (int i=0;i<js.size();i++)
-		{
-		instancia.agregarJugador(js.get(i));
-		}
-		
-		
-		solver = new Solver(instancia);		
-		solver.resolver();
-		equipo=solver.getJugadores();
+//		for (int i=0;i<js.size();i++)
+//		{
+//		instancia.agregarJugador(js.get(i));
+//		}
+//		
+//		
+//		solver = new Solver(instancia);		
+//		solver.resolver();
+//		equipo=solver.getJugadores();
 		
 		defensores= new ArrayList<Jugador>();
 		mediocampistas= new ArrayList<Jugador>();

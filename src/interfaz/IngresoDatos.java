@@ -18,7 +18,11 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
 import Threads.ThreadBarra;
+import logica.InstanciaJugadores;
 import logica.Jugador;
+import logica.Solucion;
+import logica.Solver;
+
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
@@ -246,10 +250,10 @@ public class IngresoDatos {
 		jcombobox.setBounds(81, 17, 184, 20);
 		frmArgentinaRusia.getContentPane().add(jcombobox);
 		
-		JButton btnNewButton = new JButton("Cambiar Tema");
-		btnNewButton.setToolTipText("Cambia el tema de la aplicacion");
-		btnNewButton.setBounds(275, 16, 122, 23);
-		frmArgentinaRusia.getContentPane().add(btnNewButton);
+		JButton btn_tema = new JButton("Cambiar Tema");
+		btn_tema.setToolTipText("Cambia el tema de la aplicacion");
+		btn_tema.setBounds(275, 16, 122, 23);
+		frmArgentinaRusia.getContentPane().add(btn_tema);
 		
 		JTextArea txtrTemas = new JTextArea();
 		txtrTemas.setForeground(Color.BLACK);
@@ -273,7 +277,7 @@ public class IngresoDatos {
 		PbhayEquipo.setBounds(176, 518, 242, 14);
 		frmArgentinaRusia.getContentPane().add(PbhayEquipo);
 		
-		btnNewButton.addActionListener(new ActionListener() {
+		btn_tema.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
 				try{
@@ -304,8 +308,20 @@ public class IngresoDatos {
 		
 		if( PbhayEquipo.getValue()==100)
 		{
-			InterfazSolucion pantallaEquipo = new InterfazSolucion(lista_jugadores);
-			pantallaEquipo.setJugadores(lista_jugadores);
+			
+			InstanciaJugadores instancia =  new InstanciaJugadores(3, 4, 3);;
+			ArrayList<Jugador> equipo; //equipo final a mostrar
+			for (int i=0;i<lista_jugadores.size();i++)
+			{ 
+				instancia.agregarJugador(lista_jugadores.get(i));
+			}
+				
+			Solver solver = new Solver(instancia);		
+			Solucion sol = solver.resolver();
+			equipo= sol.getEquipo();
+			
+			InterfazSolucion pantallaEquipo = new InterfazSolucion(equipo);
+			pantallaEquipo.setJugadores(equipo);
 			pantallaEquipo.setVisible(true);
 			frmArgentinaRusia.setVisible(false);
 			
