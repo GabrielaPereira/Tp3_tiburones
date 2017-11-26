@@ -35,6 +35,7 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
+import java.awt.Color;
 
 
 
@@ -93,7 +94,7 @@ public class IngresoDatos {
 		lista_jugadores = new ArrayList<Jugador>();
 			
 		JButton btnSubirListaIncompativas = new JButton("Incompatibles");
-		btnSubirListaIncompativas.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/incompatible.png")));
+		btnSubirListaIncompativas.setIcon(new ImageIcon("C:\\Users\\IBM_ADMIN\\git4\\Tp3_tiburones\\src\\imagenes\\incompatibles_ico.png"));
 		btnSubirListaIncompativas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			
@@ -202,7 +203,7 @@ public class IngresoDatos {
 		frmArgentinaRusia.getContentPane().add(btn_jugadores);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(53, 52, 714, 440);
+		scrollPane.setBounds(26, 52, 757, 440);
 		frmArgentinaRusia.getContentPane().add(scrollPane);
 		
 		grid_jugadores = new JTable();
@@ -231,12 +232,11 @@ public class IngresoDatos {
 		btn_hayEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				formandoEquipo(); 
-				
-				
 				ThreadBarra barra= new ThreadBarra();				
 				barra.start();
-			    
+				
+				formandoEquipo(); 
+				
 			}
 		});
 		
@@ -244,20 +244,22 @@ public class IngresoDatos {
 		frmArgentinaRusia.getContentPane().add(btn_hayEquipo);
 		
 		 jcombobox = new JComboBox<String>();
-		jcombobox.setBounds(97, 16, 197, 20);
+		jcombobox.setBounds(81, 17, 184, 20);
 		frmArgentinaRusia.getContentPane().add(jcombobox);
 		
 		JButton btnNewButton = new JButton("Cambiar Tema");
 		btnNewButton.setToolTipText("Cambia el tema de la aplicacion");
-		btnNewButton.setBounds(293, 15, 109, 23);
+		btnNewButton.setBounds(275, 16, 122, 23);
 		frmArgentinaRusia.getContentPane().add(btnNewButton);
 		
 		JTextArea txtrTemas = new JTextArea();
+		txtrTemas.setForeground(Color.BLACK);
+		txtrTemas.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		txtrTemas.setBackground(SystemColor.menu);
 		txtrTemas.setEnabled(false);
 		txtrTemas.setEditable(false);
 		txtrTemas.setText("Temas ");
-		txtrTemas.setBounds(26, 14, 61, 22);
+		txtrTemas.setBounds(29, 17, 55, 20);
 		frmArgentinaRusia.getContentPane().add(txtrTemas);
 		
 		PbhayEquipo = new JProgressBar();
