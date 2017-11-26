@@ -43,8 +43,7 @@ public class IngresoDatos {
     private JComboBox<String> jcombobox;
 	private JFrame frmArgentinaRusia;
 	private JTable grid_jugadores;
-	private static  ArrayList<Jugador> lista_jugadores ;
-	private ArrayList<String> lista_incompatibles ;
+	private ArrayList<Jugador> lista_jugadores ;
 
 	DefaultTableModel modelo;
 	UIManager.LookAndFeelInfo[] lafinfo = UIManager.getInstalledLookAndFeels();
@@ -71,37 +70,29 @@ public class IngresoDatos {
 
 	public IngresoDatos() {
 		initialize();
-		
-		
 			try
-		{
-		 
-		UIManager.setLookAndFeel("UpperEssential.UpperEssentialLookAndFeel");
-	}
+		{		 
+				UIManager.setLookAndFeel("UpperEssential.UpperEssentialLookAndFeel");
+		}
 		 catch(Exception e) { e.printStackTrace();}
-	
 	}
 
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	
-
-
-	
+		
 	private void initialize() {
 		frmArgentinaRusia = new JFrame();
 		frmArgentinaRusia.setIconImage(Toolkit.getDefaultToolkit().getImage(IngresoDatos.class.getResource("/imagenes/Copa Mundial Rusia 2018.png")));
 		frmArgentinaRusia.setFont(new Font("Book Antiqua", Font.PLAIN, 14));
-		frmArgentinaRusia.setTitle("                                                                   Argentina Rusia 2018");
+		frmArgentinaRusia.setTitle("Argentina Rusia 2018");
 		frmArgentinaRusia.setBounds(100, 100, 838, 582);
 		frmArgentinaRusia.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frmArgentinaRusia.getContentPane().setLayout(null);
 		
 		lista_jugadores = new ArrayList<Jugador>();
-	
-		
-		JButton btnSubirListaIncompativas = new JButton("Subir lista Incompatibles");
+			
+		JButton btnSubirListaIncompativas = new JButton("Incompatibles");
 		btnSubirListaIncompativas.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/incompatible.png")));
 		btnSubirListaIncompativas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -126,36 +117,24 @@ public class IngresoDatos {
 			        	i2 = ((org.w3c.dom.Document) document).getElementsByTagName("i2").item(i).getTextContent();
 			        	i3 = ((org.w3c.dom.Document) document).getElementsByTagName("i3").item(i).getTextContent();
 
-			   
-		        	
 			        	for(int k=0;k<lista_jugadores.size();k++){
-			        		System.out.println("lista "+lista_jugadores.get(k).getNombre()+"hola");
-			        		System.out.println("jugador "+jugador+" ++++");
+
 			        		if(lista_jugadores.get(k).getNombre().equals(jugador)){
 			        			
 				        		lista_jugadores.get(k).setIncompatibles(i1);
 					        	lista_jugadores.get(k).setIncompatibles(i2);
 					        	lista_jugadores.get(k).setIncompatibles(i3);
-					        	String n = (String) grid_jugadores.getValueAt(k, 1);
-					        	String p = (String) grid_jugadores.getValueAt(k, 2);
 					        	grid_jugadores.setValueAt(i1, k, 3);
 					        	grid_jugadores.setValueAt(i2, k, 4);
 					        	grid_jugadores.setValueAt(i3, k, 5);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 3);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 4);
-//					        	grid_jugadores.setValueAt("Incompatible", 0, 5);
 					        	
 					        	RowsRenderer rr = new RowsRenderer(3);
 					        	grid_jugadores.setDefaultRenderer(Object.class, rr);
-					        	
-//					        	modelo.fireTableRowsUpdated(k, k);
-					        	
+					        					        	
 			        		}
 			        	}
-			        	
-			        	
 			        }
-			        }
+			       }
 			    }else{
 			    	JOptionPane.showMessageDialog(null,"Error al abrir el archivo");
 			    }
@@ -167,7 +146,7 @@ public class IngresoDatos {
 		btnSubirListaIncompativas.setBounds(599, 11, 184, 30);
 		frmArgentinaRusia.getContentPane().add(btnSubirListaIncompativas);
 		
-		JButton btn_jugadores = new JButton("Subir lista Jugadores");
+		JButton btn_jugadores = new JButton("Jugadores");
 		btn_jugadores.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/argentina1r.png")));
 		btn_jugadores.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -246,13 +225,14 @@ public class IngresoDatos {
 
 		scrollPane.setViewportView(grid_jugadores);
 		
-		
-		
 		JButton btn_hayEquipo = new JButton("Hay equipo?!");
 		btn_hayEquipo.setIcon(new ImageIcon(IngresoDatos.class.getResource("/imagenes/pelota.png")));
 		btn_hayEquipo.setToolTipText("Genera las soluciones para estos jugadores ");
 		btn_hayEquipo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				formandoEquipo(); 
+				
 				
 				ThreadBarra barra= new ThreadBarra();				
 				barra.start();
@@ -284,7 +264,7 @@ public class IngresoDatos {
 		PbhayEquipo.addChangeListener(new ChangeListener() {
 			public void stateChanged(ChangeEvent e) {
 				
-				formandoEquipo();
+				formandoEquipo(); 
 				
 			}
 		});
@@ -317,32 +297,14 @@ public class IngresoDatos {
 		    
 		}
 		
-		/*
-		JButton btn_empezar = new JButton("Empezar");
-		btn_empezar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Jugador jugador = new Jugador();
-				PantallaPrincipal pantallaPrincipal = new PantallaPrincipal();
-				pantallaInicio.setVisible(false);
-				pantallaPrincipal.setVisible(true);
-				jugador.setNombre(txt_nombre.getText());
-				pantallaPrincipal.setNombre(txt_nombre.getText());
-			}
-		});
-		btn_empezar.setBounds(260, 246, 119, 37);
-		pantallaInicio.getContentPane().add(btn_empezar);
-		
-*/
-	
 		
 	}
 	protected void formandoEquipo() {
 		
 		if( PbhayEquipo.getValue()==100)
 		{
-			InterfazSolucion pantallaEquipo = new InterfazSolucion();
-			
-			
+			InterfazSolucion pantallaEquipo = new InterfazSolucion(lista_jugadores);
+			pantallaEquipo.setJugadores(lista_jugadores);
 			pantallaEquipo.setVisible(true);
 			frmArgentinaRusia.setVisible(false);
 			
@@ -350,8 +312,9 @@ public class IngresoDatos {
 		}
 	}
 
-	public static  ArrayList<Jugador> getEquipo(){
-		return IngresoDatos.lista_jugadores; }
+	public ArrayList<Jugador> getJugadores(){
+		return this.lista_jugadores; 
+	}
 	
 	private org.w3c.dom.Document buildDocument(File file) {
 		DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory
