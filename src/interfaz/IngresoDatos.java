@@ -50,7 +50,6 @@ public class IngresoDatos {
 	UIManager.LookAndFeelInfo[] lafinfo = UIManager.getInstalledLookAndFeels();
 	public static JProgressBar PbhayEquipo;
 	
-
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
