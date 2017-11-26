@@ -51,9 +51,7 @@ public static void main(String[] args) {
 	  Jugador j = new Jugador("Caro", "Delantero", 8.0);
 	  //j.setIncompatibles("Romer");
 	  boolean es = s.jugadorIncompatible(j);
-	  System.out.println(es);
-
-	  
+	    
 	  
 
    }

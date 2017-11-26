@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.ArrayList;
+
+import com.jtattoo.demo.app.MainMenuBar;
 public class Solver{
 	
 	InstanciaJugadores instancia;
@@ -73,8 +75,8 @@ public boolean esMejor(Solucion a , Solucion b){
 		InstanciaJugadores instancia = cargarInstancia();
 		
 		Solver solver = new Solver(instancia);
-
-		
+		Solucion s = solver.resolver();
+		System.out.println(s + " "+s.beneficioSolucion());
 
 	}
 
@@ -126,9 +128,6 @@ public boolean esMejor(Solucion a , Solucion b){
 	}
 	
 		
-	
-	
-	
 	
 	
 

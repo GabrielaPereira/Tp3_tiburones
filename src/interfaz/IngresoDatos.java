@@ -180,15 +180,13 @@ public class IngresoDatos {
 			        	modelo.addRow(new Object[]{ 
 			        			jugador, n, posicion, "", "", ""
 						});
-			        	  
-			        			        	
-			   
+
 			        	Jugador j = new Jugador();
 			        	j.setNombre(jugador);
 			        	j.setNivel(nivel);
 			        	j.setPosicion(posicion);
 			        	lista_jugadores.add(j);
-			        	
+			        	System.out.println("jugador" + j.getNombre());
 			        }
 			        }
 			    }else{
@@ -316,14 +314,16 @@ public class IngresoDatos {
 				instancia.agregarJugador(lista_jugadores.get(i));
 			}
 				
-			Solver solver = new Solver(instancia);		
+			Solver solver = new Solver(instancia);	
+			System.out.println(instancia);
 			Solucion sol = solver.resolver();
-			equipo= sol.getEquipo();
+			System.out.println(sol);
+			System.out.println(sol.beneficioSolucion());
 			
-			InterfazSolucion pantallaEquipo = new InterfazSolucion(equipo);
-			pantallaEquipo.setJugadores(equipo);
-			pantallaEquipo.setVisible(true);
-			frmArgentinaRusia.setVisible(false);
+//			InterfazSolucion pantallaEquipo = new InterfazSolucion(equipo);
+//			pantallaEquipo.setJugadores(equipo);
+//			pantallaEquipo.setVisible(true);
+//			frmArgentinaRusia.setVisible(false);
 			
 			
 		}

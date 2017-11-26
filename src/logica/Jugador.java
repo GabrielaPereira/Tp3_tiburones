@@ -80,7 +80,7 @@ public class Jugador {
 		}
 		@Override
 		public String toString() {
-			return "Jugador [ " + nombre + "  " + posicion + "]";
+			return "Jugador ["+ nombre +" "+ posicion +"]";
 		}
 	
 	}
