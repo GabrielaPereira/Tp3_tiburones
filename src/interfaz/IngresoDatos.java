@@ -175,6 +175,7 @@ public class IngresoDatos {
 			        	jugador = ((org.w3c.dom.Document) document).getElementsByTagName("jugador").item(i).getTextContent();
 			        	n =  ((org.w3c.dom.Document) document).getElementsByTagName("nivel").item(i).getTextContent();
 			        	posicion = ((org.w3c.dom.Document) document).getElementsByTagName("posicion").item(i).getTextContent();
+			        	nivel = Double.parseDouble(n);
 			        	
 //						Agrego a la grilla de conexiones
 			        	modelo.addRow(new Object[]{ 
@@ -186,7 +187,7 @@ public class IngresoDatos {
 			        	j.setNivel(nivel);
 			        	j.setPosicion(posicion);
 			        	lista_jugadores.add(j);
-			        	System.out.println("jugador" + j.getNombre());
+//			        	System.out.println("jugador" + j.getNombre());
 			        }
 			        }
 			    }else{
@@ -317,8 +318,8 @@ public class IngresoDatos {
 			Solver solver = new Solver(instancia);	
 			System.out.println(instancia);
 			Solucion sol = solver.resolver();
-			System.out.println(sol);
-			System.out.println(sol.beneficioSolucion());
+			System.out.println("equipo " + sol);
+//			System.out.println(sol.beneficioSolucion());
 			
 //			InterfazSolucion pantallaEquipo = new InterfazSolucion(equipo);
 //			pantallaEquipo.setJugadores(equipo);

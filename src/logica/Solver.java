@@ -52,8 +52,13 @@ public boolean esMejor(Solucion a , Solucion b){
   }
 	
 	public boolean esFactible(Solucion solucion){
-	if(formacionDelanteros() == solucion.cantDelanteros() && formacionDefensores() == solucion.cantDefensores() && formacionMediocampistas() == solucion.cantMediocampistas() && solucion.cantArqueros() == 1) return true;
-	return false;
+	if(formacionDelanteros() == solucion.cantDelanteros() && formacionDefensores() == solucion.cantDefensores() && formacionMediocampistas() == solucion.cantMediocampistas() && solucion.cantArqueros() == 1) 
+	{
+		System.out.println("es factible "+solucion);
+		return true;
+	}else{
+		return false;
+	}
 	}
 
 	public int formacionDelanteros(){
