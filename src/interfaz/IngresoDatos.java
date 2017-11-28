@@ -40,6 +40,7 @@ import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.Color;
+import java.awt.Component;
 
 
 
@@ -236,7 +237,6 @@ public class IngresoDatos {
 				
 				ThreadBarra barra= new ThreadBarra();				
 				barra.start();
-				
 				formandoEquipo(); 
 				
 			}
@@ -314,18 +314,18 @@ public class IngresoDatos {
 			{ 
 				instancia.agregarJugador(lista_jugadores.get(i));
 			}
-				
+						
 			Solver solver = new Solver(instancia);	
-			System.out.println(instancia);
+		
 			Solucion sol = solver.resolver();
-			System.out.println("equipo " + sol);
+			System.out.println("equipo" + sol.getEquipo());
 //			System.out.println(sol.beneficioSolucion());
+			equipo = lista_jugadores;
 			
-//			InterfazSolucion pantallaEquipo = new InterfazSolucion(equipo);
-//			pantallaEquipo.setJugadores(equipo);
-//			pantallaEquipo.setVisible(true);
-//			frmArgentinaRusia.setVisible(false);
-			
+			InterfazSolucion pantallaEquipo = new InterfazSolucion();
+			pantallaEquipo.setJugadores(equipo);
+			pantallaEquipo.setVisible(true);
+			frmArgentinaRusia.setVisible(false);
 			
 		}
 	}
@@ -384,4 +384,6 @@ public class IngresoDatos {
 		return file;
 		
 	}
+
+	
 }

@@ -41,6 +41,7 @@ public class Solver{
 				solucion.eliminarJugador(jugadores.get(i));
 				generarSolucionesDesde(i+1);
 			}		
+		   
 		}
 
    

@@ -68,11 +68,11 @@ public class InterfazSolucion extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InterfazSolucion(ArrayList<Jugador> lista_jugadores ) {
-		initialize(lista_jugadores);
+	public InterfazSolucion( ) {
+		initialize();
 		}
 	
-	private void initialize(ArrayList<Jugador> equipo){
+	private void initialize(){
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 750);
 		contentPane = new JPanel();
@@ -94,10 +94,11 @@ public class InterfazSolucion extends JFrame {
 //		}
 //		
 //		
+
 //		solver = new Solver(instancia);		
 //		solver.resolver();
 //		equipo=solver.getJugadores();
-		
+		System.out.println("eq "+equipo);
 		defensores= new ArrayList<Jugador>();
 		mediocampistas= new ArrayList<Jugador>();
 		goleadores= new ArrayList<Jugador>();
@@ -294,8 +295,8 @@ public class InterfazSolucion extends JFrame {
 	}
 		
 		
-	public void setJugadores(ArrayList<Jugador> lista_jugadores ){
-		this.js = lista_jugadores;
+	public void setJugadores(ArrayList<Jugador> equipo_solver ){
+		this.js = equipo_solver;
 	}
 
 	}
