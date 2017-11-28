@@ -49,17 +49,19 @@ public InstanciaJugadores getInstancia() {
 		return instancia;
 	}
 public boolean esMejor(Solucion a , Solucion b){
+	System.out.println("benef a "+ a.beneficioSolucion() + " b "+ b.beneficioSolucion());
 	return a.beneficioSolucion() > b.beneficioSolucion();
   }
 	
 	public boolean esFactible(Solucion solucion){
+		System.out.println(solucion.beneficioSolucion());
 	if(formacionDelanteros() == solucion.cantDelanteros() && formacionDefensores() == solucion.cantDefensores() && formacionMediocampistas() == solucion.cantMediocampistas() && solucion.cantArqueros() == 1) 
-	{
-		System.out.println("es factible "+solucion);
-		return true;
-	}else{
-		return false;
-	}
+		{
+			System.out.println("es factible "+solucion);
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	public int formacionDelanteros(){

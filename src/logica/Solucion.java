@@ -41,6 +41,7 @@ private ArrayList<Jugador> equipo;
 		double ret = 0.0;
 		for(Jugador j : equipo)
 			ret += j.getNivel();
+		System.out.println("benef acum" + ret);
 		return ret;
 	}
 	 
